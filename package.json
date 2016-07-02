@@ -24,6 +24,7 @@
     "patchkit-markdown": "^1.0.0",
     "patchkit-niceraw": "^1.0.0",
     "patchkit-util": "^1.0.1",
+    "patchwork-translations": "^1.0.0",
     "react": "^0.14.6",
     "ssb-msgs": "^5.2.0"
   },

@@ -6,6 +6,7 @@ import { Block as MdBlock, Inline as MdInline } from 'patchkit-markdown'
 import { Json as JsonRaw, Div as DivRaw } from 'patchkit-niceraw'
 import * as u from 'patchkit-util'
 import * as social from 'patchkit-util/social'
+import t from 'patchwork-translations'
 
 function rawAttrString(msg) {
   return <JsonRaw obj={Object.assign({id: msg.key}, msg.value)} />
@@ -82,16 +83,16 @@ function renderContact (msg, context) {
   if (contact === context.user.id) {
     if (c.following) {
       if (!social.follows(context.users, context.user.id, author))
-        return <div><i className="fa fa-user-plus" /> <UserLink id={author} /> has followed you. Follow back?</div>
+        return <div><i className="fa fa-user-plus" /> <UserLink id={author} />{t('contact.followedYou')}</div>
       else
-        return <div><i className="fa fa-user-plus" /> <UserLink id={author} /> is now your friend.</div>
+        return <div><i className="fa fa-user-plus" /> <UserLink id={author} /> {t('contact.isNowYourFriend')}</div>
     } else {
-      return <div><i className="fa fa-user-times" /> <UserLink id={author} /> has stopped following you.</div>
+      return <div><i className="fa fa-user-times" /> <UserLink id={author} /> {t('contact.unfollowedYou')}</div>
     }
   } else {
     if (c.following)
-      return <div><i className="fa fa-user-plus" /> <UserLink id={author} /> has followed {u.getName(context.users, contact)}.</div>
+      return <div><i className="fa fa-user-plus" /> <UserLink id={author} /> {t('contact.followed', {name: u.getName(context.users, contact)})}</div>
     else
-      return <div><i className="fa fa-user-times" /> <UserLink id={author} /> has stopped following {u.getName(context.users, contact)}.</div>
+      return <div><i className="fa fa-user-times" /> <UserLink id={author} /> {t('contact.unfollowed', {name: u.getName(context.users, contact)})}</div>
   }
 }
